@@ -22,6 +22,5 @@ func GeneratePassword(length int) (string, error) {
 		}
 		password[i] = rune(charSet[randIndex.Int64()])
 	}
-
 	return string(password), nil
 }
