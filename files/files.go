@@ -32,3 +32,14 @@ func PathExists(path string) (bool, bool) {
 	}
 	return true, info.IsDir()
 }
+
+func CreateDir(dirPath string) error {
+	exists, IsDir := PathExists(dirPath)
+	if exists && !IsDir {
+		return os.ErrExist
+	}
+	if !exists {
+		return os.MkdirAll(dirPath, 0755)
+	}
+	return nil
+}

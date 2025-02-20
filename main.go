@@ -1,8 +1,6 @@
 package main
 
 import (
-	"cryptoguard/files"
-	"cryptoguard/password"
 	"fmt"
 
 	"github.com/fatih/color"
@@ -16,20 +14,37 @@ func main() {
 		"\\____/_/ |_| /_/_/    /_/  \\____/\\____/\\____/_/  |_/_/ |_/_____/  \n")
 
 	// Основной код:
-	key, _ := password.GeneratePassword(10)
-	files.CreatFile("file.txt")
-	files.WriteFile("file.txt", []byte(key))
-	res, err := files.PathExists("text.txt")
-	fmt.Println(res, err)
+Menu:
+	for {
+		variant := getMenu()
+
+		switch variant {
+		case 1:
+			encrypt()
+		case 2:
+			decrypt()
+		case 3:
+			break Menu
+		default:
+			fmt.Println("Некорректный выбор. Попробуйте снова.")
+		}
+	}
 }
 
 func getMenu() int {
 	var variant int
 	fmt.Println("Выберите вариант")
-	fmt.Println("Зашифровать файл или директори")
-	fmt.Println("Расшифровать файл или дерикторию .secret")
-	fmt.Println("Выход")
+	fmt.Println("1. Зашифровать файл или директори")
+	fmt.Println("2. Расшифровать файл или дерикторию .secret")
+	fmt.Println("3. Выход")
 	fmt.Print("Ваш выбор: ")
 	fmt.Scan(&variant)
 	return variant
+}
+
+func encrypt() {
+}
+
+func decrypt() {
+	fmt.Print("Расшифровка")
 }
